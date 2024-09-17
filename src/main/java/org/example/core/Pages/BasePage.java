@@ -1,4 +1,4 @@
-package org.example.core;
+package org.example.core.Pages;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -99,9 +99,16 @@ public class BasePage {
     /********* Botao ************/
 
     public void clicarBotao(String id){
-        getDriver().findElement(By.id(id)).click();
+        clicarBotao(By.id(id));
     }
 
+    public void clicarBotao(By by){
+        getDriver().findElement((by)).click();
+    }
+
+    public void clicarBotaoPorTexto(String texto){
+        clicarBotao(By.xpath("//button[.='"+texto+"']"));
+    }
     public String obterValueElemento(String id){
         return getDriver().findElement(By.id(id)).getAttribute("value");
     }
@@ -174,9 +181,9 @@ public class BasePage {
 
     /********* TABELA ************/
 
-    public void clicarBotaoTabela(String colunaBusca, String valor, String colunaBotao, String idTabela) {
+    public WebElement obterCelula(String colunaBusca, String valor, String colunaBotao, String idTabela) {
         // Procurar coluna do registro
-        WebElement tabela = getDriver().findElement(By.xpath("//*[@id='elementosForm:tableUsuarios']"));
+        WebElement tabela = getDriver().findElement(By.xpath("//*[@id='"+idTabela+"']"));
         int idColuna = obterIndiceColuna(colunaBusca, tabela);
 
         // Encontrar a linha do registro
@@ -187,6 +194,13 @@ public class BasePage {
 
         // Clicar no botão da celula encontrada
         WebElement celula = tabela.findElement(By.xpath(".//tr["+idLinha+"]/td["+idColunaBotao+"]"));
+        return celula;
+    }
+
+
+    public void clicarBotaoTabela(String colunaBusca, String valor, String colunaBotao, String idTabela) {
+        // Clicar no botão da celula encontrada
+        WebElement celula = obterCelula(colunaBusca, valor, colunaBotao, idTabela);
         celula.findElement(By.xpath(".//input")).click();
     }
 
@@ -212,5 +226,11 @@ public class BasePage {
             }
         }
         return idColuna;
+    }
+
+    /***************** Limpar Imput ***************/
+
+    public void limparInput(By by){
+        getDriver().findElement(by).clear();
     }
 }
