@@ -1,7 +1,7 @@
 package org.example.core;
 
 import org.apache.commons.io.FileUtils;
-import org.example.core.Pages.LoginPage;
+import org.example.Pages.LoginPage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -17,11 +17,10 @@ import static org.example.core.DriverFactory.killDriver;
 
 public class BaseTest {
 
-    private LoginPage page = new LoginPage();
-
-
     @Rule
     public TestName testName = new TestName();
+
+    private LoginPage page = new LoginPage();
 
     @Before
     public void inicializa(){

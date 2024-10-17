@@ -1,6 +1,8 @@
-package org.example.core.Pages;
+package org.example.Pages;
 
-public class MenuPage extends BasePage{
+import org.example.core.BasePage;
+
+public class MenuPage extends BasePage {
 
     public void acessarTelaInserirConta(){
         clicarLink("Contas");
@@ -16,4 +18,11 @@ public class MenuPage extends BasePage{
         clicarLink("Criar Movimentação");
     }
 
+    public void acessarTelaResumoMensal(){
+        clicarLink("Resumo Mensal");
+    }
+
+    public void acessarTelaPrincipal(){
+        clicarLink("Home");
+    }
 }

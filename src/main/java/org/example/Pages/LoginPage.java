@@ -1,23 +1,17 @@
-package org.example.core.Pages;
+package org.example.Pages;
 
+import org.example.core.BasePage;
 import org.example.core.DriverFactory;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class LoginPage extends BasePage{
+public class LoginPage extends BasePage {
 
     private WebDriver driver;
     private BasePage basePage;
-
-    @Before
-    public void inicializa(){
-        DriverFactory.getDriver().get("https://seubarriga.wcaquino.me/login");
-        basePage = new BasePage();
-    }
 
     public void acessarTelaInicial(){
         DriverFactory.getDriver().get("https://seubarriga.wcaquino.me/login");
@@ -30,12 +24,14 @@ public class LoginPage extends BasePage{
     public void setSenha(String senha){
         escreve("senha", senha);
     }
+
     public void entrar(){
         clicarBotaoPorTexto("Entrar");
     }
 
-
-
+    public void resetar(){
+        clicarLink("reset");
+    }
 
 
     // Teste Inserir usuário

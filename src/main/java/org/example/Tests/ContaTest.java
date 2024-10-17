@@ -1,11 +1,14 @@
 package org.example.Tests;
 
 import org.example.core.BaseTest;
-import org.example.core.Pages.ContasPage;
-import org.example.core.Pages.MenuPage;
+import org.example.Pages.ContasPage;
+import org.example.Pages.MenuPage;
 import org.junit.Assert;
+import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
-import org.openqa.selenium.By;
+import org.junit.runners.MethodSorters;
+
 
 public class ContaTest extends BaseTest {
 
@@ -13,7 +16,7 @@ public class ContaTest extends BaseTest {
     ContasPage contasPage = new ContasPage();
 
     @Test
-    public void testInserirConta(){
+    public void test1_InserirConta(){
         menuPage.acessarTelaInserirConta();
         contasPage.setNome("Conta de teste");
         contasPage.salvar();
@@ -21,7 +24,7 @@ public class ContaTest extends BaseTest {
     }
 
     @Test
-    public void testAlterarConta(){
+    public void test2_AlterarConta(){
         menuPage.acessarTelaListarContas();
         contasPage.clicarAlterarConta("Conta de teste");
         contasPage.apagar_E_Escrever();
@@ -31,12 +34,10 @@ public class ContaTest extends BaseTest {
     }
 
     @Test
-    public void inserirContaMesmoNome(){
+    public void test3_inserirContaMesmoNome(){
         menuPage.acessarTelaInserirConta();
-        contasPage.setNome("Conta de teste 2");
+        contasPage.setNome("Conta mesmo nome");
         contasPage.salvar();
         Assert.assertEquals("Já existe uma conta com esse nome!", contasPage.obterMensagemErro());
     }
-
-
 }

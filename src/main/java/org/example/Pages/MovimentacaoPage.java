@@ -1,8 +1,9 @@
-package org.example.core.Pages;
+package org.example.Pages;
 
+import org.example.core.BasePage;
 import org.openqa.selenium.By;
 
-public class MovimentacaoPage extends BasePage{
+public class MovimentacaoPage extends BasePage {
 
     public void setDataMovimentacao(String data){
         escreve("data_transacao", data);
@@ -32,8 +33,21 @@ public class MovimentacaoPage extends BasePage{
         clicarRadio("status_pago");
     }
 
+    public void salvar(){
+        clicarBotaoPorTexto("Salvar");
+    }
+
     public String obterMensagemSucesso(){
         return obterTexto(By.xpath("//div[@class='alert alert-success']"));
+    }
+
+    public String obterMensagemErro(){
+        return obterTexto(By.xpath("//div[@class='alert alert-danger']"));
+    }
+
+    public void clicarExcluirMovimentacao(String string){
+        obterCelula("Conta", string, "Ações", "tabelaExtrato")
+                .findElement(By.xpath(".//span[@class='glyphicon glyphicon-remove-circle']")).click();
     }
 
 }

@@ -1,4 +1,4 @@
-package org.example.core.Pages;
+package org.example.core;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -198,10 +198,10 @@ public class BasePage {
     }
 
 
-    public void clicarBotaoTabela(String colunaBusca, String valor, String colunaBotao, String idTabela) {
-        // Clicar no botão da celula encontrada
+    public void clicarBotaoTabela(String colunaBusca, String valor, String colunaBotao, String idTabela){
         WebElement celula = obterCelula(colunaBusca, valor, colunaBotao, idTabela);
         celula.findElement(By.xpath(".//input")).click();
+
     }
 
     protected int obterIndiceLinha(String valor, WebElement tabela, int idColuna){
